@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mojo Carrot Pet</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Speech bubble (positioned dynamically above the pet) -->
+  <div id="speech-bubble" class="speech-bubble hidden">
+    <span id="bubble-text"></span>
+  </div>
+
+  <!-- Sleep effect overlay (positioned dynamically) -->
+  <div id="sleep-effect" class="sleep-effect hidden">
+    <span class="zzz zzz-1">Z</span>
+    <span class="zzz zzz-2">z</span>
+    <span class="zzz zzz-3">Z</span>
+  </div>
+
+  <!-- Main pet canvas -->
+  <canvas id="pet-canvas"></canvas>
+
+  <!-- Right-click context menu -->
+  <div id="context-menu" class="pet-context-menu hidden"></div>
+
+  <!-- Scripts (order matters) -->
+  <script src="config.js"></script>
+  <script src="pet.js"></script>
+  <script src="speech-bubbles.js"></script>
+  <script src="context-menu.js"></script>
+  <script src="interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════
+   Mojo Carrot Pet — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  -webkit-app-region: no-drag;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  position: relative;
+  /* Removed flex center/end so elements can be absolutely positioned freely */
+}
+
+/* ─── Pet Canvas ──────────────────────────────────────────── */
+
+#pet-canvas {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  cursor: grab;
+  image-rendering: auto;
+  transition: opacity 0.3s ease;
+}
+
+#pet-canvas:active {
+  cursor: grabbing;
+}
+
+/* ─── Speech Bubble ───────────────────────────────────────── */
+
+.speech-bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 6px 12px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+  max-width: 260px;
+  z-index: 100;
+  pointer-events: none;
+
+  /* Positioned dynamically via JS — default just above canvas */
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid rgba(255, 255, 255, 0.95);
+}
+
+.speech-bubble.visible {
+  opacity: 1;
+}
+
+.speech-bubble.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── Sleep Effect (Zzz) ──────────────────────────────────── */
+
+.sleep-effect {
+  position: absolute;
+  z-index: 90;
+  pointer-events: none;
+  /* Positioned dynamically via JS */
+}
+
+.sleep-effect.hidden {
+  display: none;
+}
+
+.zzz {
+  position: absolute;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  color: #7b8ba3;
+  opacity: 0;
+}
+
+.sleep-effect.visible .zzz {
+  animation: float-zzz 3s ease-in-out infinite;
+}
+
+.zzz-1 {
+  font-size: 14px;
+  right: 0;
+  top: 0;
+  animation-delay: 0s !important;
+}
+
+.zzz-2 {
+  font-size: 11px;
+  right: 10px;
+  top: -8px;
+  animation-delay: 1s !important;
+}
+
+.zzz-3 {
+  font-size: 18px;
+  right: -4px;
+  top: -18px;
+  animation-delay: 2s !important;
+}
+
+@keyframes float-zzz {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-25px) rotate(-12deg);
+  }
+}
+
+/* ─── Right-click Context Menu ────────────────────────────── */
+
+.pet-context-menu {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 4px 0;
+  min-width: 170px;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  font-size: 13px;
+  color: #333;
+  overflow: hidden;
+}
+
+.pet-context-menu.hidden {
+  display: none;
+}
+
+.ctx-item {
+  padding: 7px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+
+.ctx-item:hover {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.ctx-item:active {
+  background: rgba(0, 122, 255, 0.2);
+}
+
+.ctx-title {
+  opacity: 0.6;
+  cursor: default;
+  font-size: 11px;
+  justify-content: center;
+}
+
+.ctx-title:hover,
+.ctx-title:active {
+  background: transparent;
+}
+
+.ctx-separator {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 4px 0;
+}
+
+.ctx-item .ctx-icon {
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.ctx-sublabel {
+  margin-left: auto;
+  color: #999;
+  font-size: 11px;
+}
+
+/* Sliders */
+.ctx-item-slider {
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctx-item-slider .slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ctx-item-slider input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.ctx-item-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.ctx-item-slider input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: #e0e0e0;
+  border-radius: 2px;
+}

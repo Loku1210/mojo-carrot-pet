@@ -1,0 +1,46 @@
+{
+  "name": "mojo-carrot-pet",
+  "version": "1.0.1",
+  "description": "Mojo Carrot 独立桌面宠物 — 可爱的胡萝卜桌面伙伴",
+  "main": "main.js",
+  "author": "Loku1210",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:mac": "electron-builder --mac",
+    "build:mac:arm64": "electron-builder --mac --arm64",
+    "build:mac:x64": "electron-builder --mac --x64",
+    "build:win": "electron-builder --win --x64",
+    "build:win:x64": "electron-builder --win --x64",
+    "dist:checksums": "cd dist && shasum -a 256 \"Mojo Carrot Pet-1.0.1-arm64.dmg\" \"Mojo Carrot Pet Setup 1.0.1.exe\" | sed 's/Mojo Carrot Pet-1.0.1-arm64.dmg/Mojo.Carrot.Pet-1.0.1-arm64.dmg/; s/Mojo Carrot Pet Setup 1.0.1.exe/Mojo.Carrot.Pet.Setup.1.0.1.exe/' > SHA256SUMS.txt"
+  },
+  "build": {
+    "appId": "com.mojocarrot.pet",
+    "productName": "Mojo Carrot Pet",
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "nsis"
+      ]
+    },
+    "publish": null,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}
