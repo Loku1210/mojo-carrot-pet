@@ -8,6 +8,9 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev",
+    "test": "node --test test/*.test.mjs",
+    "audit:inputs": "node scripts/audit-release-inputs.mjs",
+    "verify": "npm test && npm run audit:inputs",
     "build:mac": "electron-builder --mac",
     "build:mac:arm64": "electron-builder --mac --arm64",
     "build:mac:x64": "electron-builder --mac --x64",

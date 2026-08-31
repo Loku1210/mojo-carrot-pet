@@ -154,6 +154,8 @@ function createWindow() {
   }
 
   mainWindow.setIgnoreMouseEvents(false);
+  mainWindow.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+  mainWindow.webContents.on('will-navigate', (event) => event.preventDefault());
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 
   // Prevent window from being closed by Cmd+W, hide instead
