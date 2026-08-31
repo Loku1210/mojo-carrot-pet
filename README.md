@@ -22,6 +22,13 @@ Mojo Carrot Pet 是一个非官方粉丝向桌面宠物 App。卜卜会停在桌
 
 暂时不要把 Apple Silicon 版本用于 Intel Mac。Intel Mac 需要单独的 x64 或 universal macOS 包。
 
+## 当前验证状态
+
+- **macOS Apple Silicon**：本轮从当前源码重建，并执行 GUI smoke、载荷清单、签名状态和 SHA256 检查。
+- **Intel Mac**：会尝试 x64/universal 构建；只有构建和结构检查成功时才列为候选，未完成 Intel 真机验收前不标记为完全支持。
+- **Windows x64**：本轮只做交叉构建与安装包**结构验证**；**Windows 真机**安装和运行仍待外部验收。
+- 当前候选**未签名、未公证**。macOS 的 ad-hoc 签名不等于 Developer ID 签名。
+
 ## 安装
 
 ### macOS
@@ -83,10 +90,13 @@ npm start
 npm run build:mac:arm64
 npm run build:win:x64
 npm run dist:checksums
+npm run verify
 ```
 
 ## 非官方声明
 
 本项目是非官方粉丝作品，仅用于个人娱乐和学习交流。项目与五月天、Stayreal、相信音乐及相关权利方没有从属、合作、授权或背书关系。
+
+源码采用 MIT；原创角色帧、图标和应用文案按 `ASSETS-LICENSE` 的非商业条款提供。内置反应文案已收敛为原创桌宠短句，仅保留两个经复核的日常粉丝语境称呼；这不构成第三方授权。不得把项目或素材用于暗示合作、代言或商业推广。
 
 如果项目中的文案、素材或表达方式涉及权利方不希望公开使用的内容，请通过 GitHub Issue 联系维护者处理。

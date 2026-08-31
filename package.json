@@ -14,9 +14,10 @@
     "build:mac": "electron-builder --mac",
     "build:mac:arm64": "electron-builder --mac --arm64",
     "build:mac:x64": "electron-builder --mac --x64",
+    "build:mac:universal": "electron-builder --mac --universal",
     "build:win": "electron-builder --win --x64",
     "build:win:x64": "electron-builder --win --x64",
-    "dist:checksums": "cd dist && shasum -a 256 \"Mojo Carrot Pet-1.0.1-arm64.dmg\" \"Mojo Carrot Pet Setup 1.0.1.exe\" | sed 's/Mojo Carrot Pet-1.0.1-arm64.dmg/Mojo.Carrot.Pet-1.0.1-arm64.dmg/; s/Mojo Carrot Pet Setup 1.0.1.exe/Mojo.Carrot.Pet.Setup.1.0.1.exe/' > SHA256SUMS.txt"
+    "dist:checksums": "cd dist && shasum -a 256 Mojo.Carrot.Pet-1.0.1-arm64.dmg Mojo.Carrot.Pet.Setup.1.0.1.exe > SHA256SUMS.txt"
   },
   "build": {
     "appId": "com.mojocarrot.pet",
@@ -26,13 +27,15 @@
       "icon": "build/icon.icns",
       "target": [
         "dmg"
-      ]
+      ],
+      "artifactName": "Mojo.Carrot.Pet-${version}-${arch}.${ext}"
     },
     "win": {
       "icon": "build/icon.png",
       "target": [
         "nsis"
-      ]
+      ],
+      "artifactName": "Mojo.Carrot.Pet.Setup.${version}.${ext}"
     },
     "publish": null,
     "files": [
