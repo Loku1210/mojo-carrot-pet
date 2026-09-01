@@ -18,17 +18,10 @@ test('every declared animation has exactly its packaged PNG frame count', () => 
   }
 });
 
-test('bundled reactions are short original pet copy plus two reviewed fandom references', () => {
-  const messages = Object.values(config.messages).flat();
-  assert.ok(messages.every(message => typeof message === 'string' && message.length > 0 && message.length <= 32));
-  assert.equal(messages.filter(message => message === '我们是！五月天！').length, 1);
-  assert.equal(messages.filter(message => message === '再戳我要告诉阿信咯').length, 1);
-  for (const removed of [
-    '幸运 在我手心', '狂飙爱意', '温柔的海涌', '我还是一个我', '最完美的阵容',
-    '不知不觉不经意', '予阮一个梦', '心上一字敢', '毋是好囝', '好想好想飞',
-    '疯狂世界', '下个路口', '彼粒星', '我有我的路', '云一蕊', '爱眠梦',
-    '写新专辑', '敢讲伊是一场空', '再尝一点美梦', '宠上了天',
-  ]) assert.equal(messages.some(message => message.includes(removed)), false, removed);
+test('bundled reactions preserve Loku\'s reviewed local dialogue set exactly', () => {
+  const expected = JSON.parse(read('test/fixtures/loku-messages.json'));
+  const actual = JSON.parse(JSON.stringify(config.messages));
+  assert.deepEqual(actual, expected);
 });
 
 test('Electron renderer is isolated and cannot create navigation or new windows', () => {
