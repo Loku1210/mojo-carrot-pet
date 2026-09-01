@@ -15,6 +15,17 @@ test('README and status state exact assets and verification limits', () => {
   ]) assert.match(docs, new RegExp(expected.replaceAll('.', '\\.')));
 });
 
+test('checksum generation covers every macOS DMG variant the project can build', () => {
+  const pkg = JSON.parse(read('package.json'));
+  const command = pkg.scripts['dist:checksums'];
+  // The universal DMG is a documented release candidate, so SHA256SUMS.txt must cover it.
+  assert.equal(/arm64\.dmg/.test(command), false, 'must not hash only the arm64 DMG');
+  assert.equal(command.includes(pkg.version), false, 'must not hardcode the version');
+  assert.match(command, /Mojo\.Carrot\.Pet-\*\.dmg/);
+  assert.match(command, /Mojo\.Carrot\.Pet\.Setup\.\*\.exe/);
+  assert.match(command, /SHA256SUMS\.txt/);
+});
+
 test('electron-builder emits the same filenames linked by documentation', () => {
   const pkg = JSON.parse(read('package.json'));
   assert.equal(pkg.build.mac.artifactName, 'Mojo.Carrot.Pet-${version}-${arch}.${ext}');

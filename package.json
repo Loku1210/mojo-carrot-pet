@@ -17,7 +17,7 @@
     "build:mac:universal": "electron-builder --mac --universal",
     "build:win": "electron-builder --win --x64",
     "build:win:x64": "electron-builder --win --x64",
-    "dist:checksums": "cd dist && shasum -a 256 Mojo.Carrot.Pet-1.0.1-arm64.dmg Mojo.Carrot.Pet.Setup.1.0.1.exe > SHA256SUMS.txt"
+    "dist:checksums": "cd dist && shasum -a 256 Mojo.Carrot.Pet-*.dmg Mojo.Carrot.Pet.Setup.*.exe > SHA256SUMS.txt"
   },
   "build": {
     "appId": "com.mojocarrot.pet",
