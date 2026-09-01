@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
-import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
 
@@ -44,7 +43,7 @@ test('Electron renderer is isolated and cannot create navigation or new windows'
 test('release files remain a narrow positive list', () => {
   const pkg = JSON.parse(read('package.json'));
   assert.deepEqual(pkg.build.files, ['main.js', 'preload.js', 'renderer/**/*', 'assets/**/*']);
+  assert.equal(pkg.name, 'mojo-carrot-pet');
   assert.equal(pkg.scripts.test, 'node --test test/*.test.mjs');
   assert.equal(pkg.scripts.verify, 'npm test && npm run audit:inputs');
-  assert.equal(path.basename(new URL(root).pathname), 'mojo-carrot-pet');
 });
