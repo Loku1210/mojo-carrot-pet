@@ -16,12 +16,13 @@ Verify the downloaded file with `SHA256SUMS.txt` before installing.
 ## Assets
 
 - macOS Apple Silicon: `Mojo.Carrot.Pet-1.0.1-arm64.dmg`
+- macOS universal candidate: `Mojo.Carrot.Pet-1.0.1-universal.dmg`
 - Windows x64: `Mojo.Carrot.Pet.Setup.1.0.1.exe`
 - Checksums: `SHA256SUMS.txt`
 
 ## Notes
 
-- macOS and Windows may show an unknown developer warning because this version is not code-signed.
-- The macOS candidate is not notarized. Windows x64 has structure-only verification until a Windows host completes installation and runtime checks.
+- macOS uses an ad-hoc signature and is not notarized; Windows is unsigned. Both may show an unknown developer warning.
+- Windows x64 has structure-only verification until a Windows host completes installation and runtime checks. The universal DMG has no Intel runtime claim yet.
 - Candidate filenames are generated directly as `Mojo.Carrot.Pet-1.0.1-arm64.dmg` and `Mojo.Carrot.Pet.Setup.1.0.1.exe`; no post-build renaming is required.
 - This is an unofficial fan-made project and is not affiliated with or endorsed by 五月天, 相信音乐, or related rights holders.
