@@ -4,6 +4,8 @@ Mojo Carrot Pet 是一个非官方粉丝向桌面宠物 App。卜卜会停在桌
 
 欢迎各位WMLS下载使用！！
 
+小红书：@Loku🥕🍏
+
 ## 安全下载声明
 
 请只从本项目的 GitHub Releases 下载安装包。
